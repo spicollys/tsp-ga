@@ -23,8 +23,10 @@ def select_individual_by_roulette_wheel(population, cities_coordinates):
                                   (1 - (individual_fitness[1] / population_fitness_sum)))
 
     random_number = uniform(0, 1)
-    for index in range(population_size):
-        if random_number > individual_probabilities[index]:
-            selected_individual = population_fitness[index]
-            population.remove(selected_individual[0])
-            return [selected_individual[0], population]
+    while True:
+        for index in range(population_size):
+            if random_number > individual_probabilities[index]:
+                selected_individual = population_fitness[index]
+                population.remove(selected_individual[0])
+                return [selected_individual[0], population]
+        random_number = uniform(0, 1)
