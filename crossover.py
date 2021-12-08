@@ -1,4 +1,4 @@
-from random import randint
+from util import generate_split_points
 
 
 def ordered_crossover(x1, x2):
@@ -14,14 +14,7 @@ def ordered_crossover(x1, x2):
     y2 = y1.copy()
 
     # generating random crossover split points such as 0 <= a < b <= n
-    point_a = point_b = 0
-
-    while point_a == point_b:
-        point_a = randint(0, len(x1))
-        point_b = randint(0, len(x2))
-
-        if point_a > point_b:
-            point_a, point_b = point_b, point_a
+    point_a, point_b = generate_split_points(0, len(x1))
 
     # putting the inherited points to children chromosomes
     y1[point_a:point_b] = x2[point_a:point_b]
