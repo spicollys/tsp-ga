@@ -2,6 +2,8 @@ from util import generate_split_points
 
 
 def ordered_crossover(x1, x2):
+    """Receive two chromosomes x1 and x2, and return their
+    children y1 and y2, based on ordered crossover method."""
     x1, x2 = list(x1), list(x2)
     # saving R and removing it right after
     r = x1[:1]

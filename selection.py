@@ -25,6 +25,7 @@ def roulette_wheel_selection(population, cities_coordinates):
     for fit_value in population_fitness:
         population_fitness_sum += fit_value[1]
 
+    # calculating the probability for each individual
     individual_probabilities = []
     population_size = len(population)
     for individual_fitness in population_fitness:
@@ -32,17 +33,10 @@ def roulette_wheel_selection(population, cities_coordinates):
                                   (1 - (individual_fitness[1] / population_fitness_sum)))
 
     selected_individuals = []
-
+    # selecting the individual according it probability
     for index in range(population_size):
         random_number = uniform(0, 1)
         if random_number > individual_probabilities[index]:
             selected_individual = population_fitness[index]
             selected_individuals.append(selected_individual[0])
     return selected_individuals
-
-
-def selection(desired_elite_number, population, cities_coordinates):
-    """Do the selection process mixing roulette and elitism method."""
-    elitism_individuals, population = elitism_selection(desired_elite_number, population, cities_coordinates)
-    roulette_individuals = roulette_wheel_selection(population, cities_coordinates)
-    return elitism_individuals + roulette_individuals
