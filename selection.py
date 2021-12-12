@@ -20,23 +20,18 @@ def roulette_wheel_selection(population, cities_coordinates):
     list containing the first selected individual based on roulette
     wheel selection."""
     population_fitness = get_population_fitness(cities_coordinates, population)
-    population_fitness_sum = 0
+    population_fitness_sum = sum([fit_value[1] for fit_value in population_fitness])
 
-    for fit_value in population_fitness:
-        population_fitness_sum += fit_value[1]
-
-    # calculating the probability for each individual
-    individual_probabilities = []
     population_size = len(population)
-    for individual_fitness in population_fitness:
-        individual_probabilities.append((1 / (population_size - 1)) *
-                                  (1 - (individual_fitness[1] / population_fitness_sum)))
 
     selected_individuals = []
+
     # selecting the individual according it probability
+    random_number = uniform(0, population_fitness_sum)
+    current_probability = 0
     for index in range(population_size):
-        random_number = uniform(0, 1)
-        if random_number > individual_probabilities[index]:
+        current_probability += population_fitness[index][1]
+        if current_probability > random_number:
             selected_individual = population_fitness[index]
             selected_individuals.append(selected_individual[0])
     return selected_individuals

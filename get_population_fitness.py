@@ -15,5 +15,4 @@ def get_population_fitness(cities_coordinates, population):
     for individual in population:
         population_fitness.append((individual, calculate_fitness(cities_coordinates, individual)))
     return sorted(population_fitness,
-                  key=lambda get_elem: get_elem[1],
-                  reverse=True)
+                  key=lambda get_elem: get_elem[1])

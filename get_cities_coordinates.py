@@ -6,7 +6,7 @@ def get_cities_coordinates(file_path):
         0 0 0 0 D
         0 A 0 0 0
         0 0 0 0 C
-        R 0 0 B 0
+        R 0 B 0 0
 
     Output:
     {'D': (0, 4), 'A': (1, 1), 'C': (2, 4), 'R': (3, 0), 'B': (3, 2)}
